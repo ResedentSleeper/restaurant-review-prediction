@@ -1,0 +1,30 @@
+name: load
+on:
+  workflow_dispatch:
+jobs:
+  load_data:
+    runs-on: self-hosted
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+      - name: Download file
+        run: curl -o reviews.csv https://raw.githubusercontent.com/manthanpatel98/Restaurant-Review-Sentiment-Analysis/master/Restaurant%20reviews.csv
+      - name: Install requirements
+        run: pip install -r requirements.txt
+      - name: Load database
+        env:
+          DB_USERNAME: ${{secrets.DB_USERNAME}}
+          DB_PASSWORD:  ${{secrets.DB_PASSWORD}}
+        run: python src/load_dataset.py reviews.csv
+
+  data_preparation:
+    runs-on: self-hosted
+    needs: load_data
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+      - name: Preprocessing data
+        env:
+          DB_USERNAME: ${{secrets.DB_USERNAME}}
+          DB_PASSWORD:  ${{secrets.DB_PASSWORD}}
+        run: python src/data_preparation.py
