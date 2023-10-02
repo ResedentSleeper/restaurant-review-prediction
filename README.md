@@ -45,4 +45,4 @@ dtypes: float64(1), int64(1), object(6)
 
 #### Диаграмма компонентов
 
-![img](img/component.png)
+![img](img/comp.png)
