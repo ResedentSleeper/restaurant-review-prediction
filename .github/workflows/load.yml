@@ -13,7 +13,7 @@ jobs:
         env:
           DB_USERNAME: ${{secrets.DB_USERNAME}}
           DB_PASSWORD:  ${{secrets.DB_PASSWORD}}
-        run: python src/load_dataset.py reviews.csv
+        run: python .\src\load_dataset.py reviews.csv
 
   data_preparation:
     runs-on: self-hosted
