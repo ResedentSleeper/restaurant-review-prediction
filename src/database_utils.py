@@ -5,7 +5,7 @@ from pandas import DataFrame
 def get_connection():
     return psycopg2.connect(
         host="localhost",
-        database="reviewDB",
+        database="postgres",
         user="postgres",
         password="kpk22"
     )
