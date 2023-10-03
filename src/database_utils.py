@@ -12,7 +12,7 @@ def get_connection():
 
 #Update model version before train
 def update_model_version():
-    with open("D:/labs/restaurant-review-prediction/resources/version.txt", "r+") as file:
+    with open("./resources/version.txt", "r+") as file:
         version = int(file.readline(1)) + 1
         file.seek(0)
         file.write(str(version))
@@ -20,7 +20,7 @@ def update_model_version():
         return version
 
 def get_version():
-    with open("D:/labs/restaurant-review-prediction/resources/version.txt", "r") as file:
+    with open("./resources/version.txt", "r") as file:
         return int(file.readline(1))
 
 #Save clear data to table 

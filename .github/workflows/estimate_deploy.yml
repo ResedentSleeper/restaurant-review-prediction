@@ -1,4 +1,4 @@
-name: estimate
+name: estimate_deploy
 on:
   workflow_dispatch:
 jobs:
@@ -13,15 +13,15 @@ jobs:
           DB_PASSWORD: ${{secrets.DB_PASSWORD}}
         run: python src/estimate_models.py
 
-  choose_deploy_model:
+  deploy_model:
     needs: estimate_models
     runs-on: self-hosted
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
-      - name: Choose model to deploy
+      - name: Choose model and deploy it
         env:
           DB_USERNAME: ${{secrets.DB_USERNAME}}
           DB_PASSWORD: ${{secrets.DB_PASSWORD}}
-        run: python src/choose_deploy_model.py
+        run: python deploy.py
 

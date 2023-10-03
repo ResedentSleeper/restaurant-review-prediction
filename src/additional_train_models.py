@@ -4,7 +4,7 @@ from database_utils import get_connection, get_vectorizer, update_model_version,
 
 
 def additional_vectorizer(connection, version, vectorizer_name, add_train_X):
-    filename = "D:/labs/restaurant-review-prediction/resources/vector.txt"
+    filename = "./resources/vector.txt"
     get_vectorizer(connection, vectorizer_name, filename, str(version), "vectorizer")
     
     with open(filename, "rb") as file:
@@ -12,7 +12,7 @@ def additional_vectorizer(connection, version, vectorizer_name, add_train_X):
     os.remove(filename)
     add_train_X = vectorizer.fit_transform(add_train_X)
 
-    filename = "D:/labs/restaurant-review-prediction/resources/vector.txt"
+    filename = "./resources/vector.txt"
     with open(filename, "wb") as file:
         pickle.dump(vectorizer, file)
     version = version + 1
@@ -24,7 +24,7 @@ def additional_vectorizer(connection, version, vectorizer_name, add_train_X):
 
 
 def additional_train_models(connection, model_version, model_name, test_x, test_y):
-    filename = "D:/labs/restaurant-review-prediction/resources/model.txt"
+    filename = "./resources/model.txt"
     get_model_by_version(connection, model_name, filename, str(model_version),"modelsTable")
 
     with open(filename, "rb") as file:

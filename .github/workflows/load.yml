@@ -9,8 +9,6 @@ jobs:
         uses: actions/checkout@v3
       - name: Download file
         run: curl -o reviews.csv https://raw.githubusercontent.com/manthanpatel98/Restaurant-Review-Sentiment-Analysis/master/Restaurant%20reviews.csv
-      - name: Install requirements
-        run: pip install -r requirements.txt
       - name: Load database
         env:
           DB_USERNAME: ${{secrets.DB_USERNAME}}

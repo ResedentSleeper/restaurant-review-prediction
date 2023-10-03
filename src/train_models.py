@@ -13,7 +13,7 @@ def tf_idf_vectorizer(connection, model_version):
     train_data = get_data(connection, "train")
     train_x = vectorizer.fit_transform(train_data[2])
 
-    filename = "D:/labs/restaurant-review-prediction/resources/vector.txt"
+    filename = "./resources/vector.txt"
     with open(filename, "wb") as file:
         pickle.dump(vectorizer, file)
     
@@ -27,7 +27,7 @@ def logistic_regression_model(connection, model_version, train_x, train_y):
 
     model.fit(train_x, train_y)
 
-    filename = "D:/labs/restaurant-review-prediction/resources/model.txt"
+    filename = "./resources/model.txt"
     with open(filename, "wb") as file:
         pickle.dump(model, file)
 
@@ -40,7 +40,7 @@ def random_forest_classifier(connection, model_version, train_x, train_y):
 
     model.fit(train_x, train_y)
 
-    filename = "D:/labs/restaurant-review-prediction/resources/model.txt"
+    filename = "./resources/model.txt"
     with open(filename, "wb") as file:
         pickle.dump(model, file)
 

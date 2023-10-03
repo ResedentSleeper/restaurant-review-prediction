@@ -6,7 +6,7 @@ from database_utils import get_connection, get_vectorizer, get_data, get_model_b
 
 
 def load_vectorizer(connection, version, vectorizer_name):
-    filename = "D:/labs/restaurant-review-prediction/resources/vector.txt"
+    filename = "./resources/vector.txt"
     get_vectorizer(connection, vectorizer_name, filename, str(version), "vectorizer")
 
     with open(filename, "rb") as file:
@@ -18,7 +18,7 @@ def load_vectorizer(connection, version, vectorizer_name):
 
 def save_model(connection, vectorizer, version, model_name, test_x, test_y):
     vectorized_test_x = vectorizer.transform(test_x)
-    filename = "D:/labs/restaurant-review-prediction/resources/model.txt"
+    filename = "./resources/model.txt"
 
     get_model_by_version(connection, model_name, filename, str(version), "modelsTable")
     with open(filename, "rb") as file:
