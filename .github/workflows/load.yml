@@ -9,9 +9,18 @@ jobs:
       - uses: actions/setup-python@v4
         with:
           python-version: '3.10' 
-          cache: 'pip'
       - run: pip install -r resources/requirements.txt
       - name: Download file
         run: curl -o reviews.csv https://raw.githubusercontent.com/manthanpatel98/Restaurant-Review-Sentiment-Analysis/master/Restaurant%20reviews.csv
       - name: Load database
         run: python src/load_dataset.py reviews.csv
+  data_preparation:
+    runs-on: self-hosted
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-python@v4
+        with:
+          python-version: '3.10' 
+      - run: pip install -r resources/requirements.txt
+      - name: Preprocessing data
+        run: python src/data_preparation.py
