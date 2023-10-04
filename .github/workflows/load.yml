@@ -16,6 +16,7 @@ jobs:
         run: python src/load_dataset.py reviews.csv
   data_preparation:
     runs-on: self-hosted
+    needs: load_data
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-python@v4
