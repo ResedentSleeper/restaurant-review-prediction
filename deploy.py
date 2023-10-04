@@ -52,7 +52,7 @@ def prediction():
     review = req['data']
     print(review)
     vectorized = server.vectorizer.transform([review])
-    score = str(server.model.predict(vectorized)[0])
+    score = str(server.model.predict(vectorized))
     print(score)
     data = {'score' : score}
     return jsonify(data)
