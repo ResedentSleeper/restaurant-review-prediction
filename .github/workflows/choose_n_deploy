@@ -1,12 +1,18 @@
-  deploy:
+name: choose_n_deploy
+on:
+  workflow_dispatch:
+jobs:
+  train_models:
+    permissions:
+      contents: write
     runs-on: self-hosted
-    needs: choose_best_model
-    if: always()
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v3
+      - uses: actions/checkout@v3
+      - uses: actions/setup-python@v4
+        with:
+          python-version: '3.10' 
+      - run: pip install -r resources/requirements.txt
+      - name: Start server
+        run: python deploy.py
       - name: Start deploy
-        env:
-          DB_USERNAME: ${{secrets.DB_USERNAME}}
-          DB_PASSWORD: ${{secrets.DB_PASSWORD}}
-        run: curl "http://localhost:5000/update"
+        run: curl "http://localhost:5000"
