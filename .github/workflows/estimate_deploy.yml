@@ -1,27 +1,14 @@
-name: estimate_deploy
+name: estimate_models
 on:
   workflow_dispatch:
 jobs:
-  estimate_models:
+  load_data:
     runs-on: self-hosted
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v3
+      - uses: actions/checkout@v3
+      - uses: actions/setup-python@v4
+        with:
+          python-version: '3.10' 
+      - run: pip install -r resources/requirements.txt
       - name: Estimate models
-        env:
-          DB_USERNAME: ${{secrets.DB_USERNAME}}
-          DB_PASSWORD: ${{secrets.DB_PASSWORD}}
         run: python src/estimate_models.py
-
-  deploy_model:
-    needs: estimate_models
-    runs-on: self-hosted
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v3
-      - name: Choose model and deploy it
-        env:
-          DB_USERNAME: ${{secrets.DB_USERNAME}}
-          DB_PASSWORD: ${{secrets.DB_PASSWORD}}
-        run: python deploy.py
-
