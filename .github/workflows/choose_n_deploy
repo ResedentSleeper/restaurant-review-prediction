@@ -2,7 +2,7 @@ name: choose_n_deploy
 on:
   workflow_dispatch:
 jobs:
-  train_models:
+  deploy:
     permissions:
       contents: write
     runs-on: self-hosted
