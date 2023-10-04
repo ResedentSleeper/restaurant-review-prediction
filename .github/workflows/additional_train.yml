@@ -1,4 +1,4 @@
-name: train
+name: additional_train
 on:
   workflow_dispatch:
 jobs:
