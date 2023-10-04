@@ -13,6 +13,4 @@ jobs:
           python-version: '3.10' 
       - run: pip install -r resources/requirements.txt
       - name: Start deploy
-        run: curl "http://localhost:5000"
-      - name: Start server
-        run: python deploy.py
+        run: Start "http://localhost:5000"
