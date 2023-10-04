@@ -7,33 +7,33 @@ jobs:
       contents: write
     runs-on: self-hosted
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v3
+      - uses: actions/checkout@v3
+      - uses: actions/setup-python@v4
+        with:
+          python-version: '3.10' 
+      - run: pip install -r resources/requirements.txt
       - name: Models train
-        env:
-          DB_USERNAME: ${{secrets.DB_USERNAME}}
-          DB_PASSWORD: ${{secrets.DB_PASSWORD}}
         run: python src/train_models.py
       - name: Commit changes of version
         uses: EndBug/add-and-commit@v9.1.1
         with:
-            default_author: github_actions
-            message: 'Commit changes of version'
-
+          default_author: github_actions
+          message: 'Commit changes of version'
+  
   additional_train_models:
-    needs: train_models
+    permissions:
+      contents: write
     runs-on: self-hosted
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v3
+      - uses: actions/checkout@v3
+      - uses: actions/setup-python@v4
+        with:
+          python-version: '3.10' 
+      - run: pip install -r resources/requirements.txt
       - name: Additional train
-        env:
-          DB_USERNAME: ${{secrets.DB_USERNAME}}
-          DB_PASSWORD: ${{secrets.DB_PASSWORD}}
         run: python src/additional_train_models.py
       - name: Commit changes of version
         uses: EndBug/add-and-commit@v9.1.1
         with:
-            default_author: github_actions
-            message: 'Commit changes of version'
-
+          default_author: github_actions
+          message: 'Commit changes of version'           
